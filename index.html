@@ -1,67 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ambitriber finance</title>
-    <link rel="stylesheet" href="tribercss.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ambitriber Finance</title>
+  <link rel="stylesheet" href="tribercss.css" />
 </head>
 <body>
-    <header>
-        <h1>Welcome to my eToro financial space</h1>
-        <p>Sharing insights, strategies, and market updates</p>
-    </header>
+  <header>
+    <h1>Welcome to my eToro financial space</h1>
+    <p>Sharing insights, strategies, and market updates</p>
+  </header>
 
-    <nav>
-        <ul>
-            <li><a href="#about">About Me</a></li>
-            <li><a href="#strategy">My Investment Strategy</a></li>
-            <li><a href="#updates">Weekly Market Updates</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+  <nav>
+    <ul>
+      <li><a href="#about">About Me</a></li>
+      <li><a href="#strategy">My Investment Strategy</a></li>
+      <li><a href="#updates">Weekly Market Updates</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p><!-- Add your introduction and background here --></p>
-    </section>
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I’m Ambitriber, a multi-strategy stock investor on eToro. My focus is on diversified, long-term growth through global equity markets. With a growing community of copiers, I emphasize transparency, strategic allocation, and steady performance across a carefully balanced portfolio.</p>
+  </section>
 
-    <section id="strategy">
-        <h2>My Investment Strategy</h2>
-        <p><!-- Explain your UCITS ETF strategy, 60/40 approach, and diversification principles here --></p>
-    </section>
+  <section id="strategy">
+    <h2>My Investment Strategy</h2>
+    <p>I invest in a wide range of sectors and regions to spread risk and capture opportunities. My portfolio includes individual stocks and ETFs, emphasizing dividend-paying assets and long-term performance.</p>
 
-    <section id="updates">
-        <h2>Weekly Market Updates</h2>
-        <div id="updates-container">Loading updates...</div>
-    </section>
+    <h3>Sector Allocation</h3>
+    <ul>
+      <li>Technology Services: 33.23%</li>
+      <li>Retail Trade: 14.13%</li>
+      <li>Health Technology: 11.37%</li>
+      <li>Consumer Non-Durables: 6.54%</li>
+      <li>Electronic Technology: 5.79%</li>
+      <li>ETFs: 5.56%</li>
+      <li>Energy Minerals: 4.51%</li>
+      <li>Finance: 3.96%</li>
+      <li>Non-Energy Minerals: 3.54%</li>
+      <li>Consumer Durables: 3.41%</li>
+    </ul>
 
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p><!-- Add your email, social links, or other contact info here --></p>
-    </section>
+    <h3>Geographical Allocation</h3>
+    <ul>
+      <li>United States: 52.56%</li>
+      <li>China: 14.2%</li>
+      <li>Sweden: 3.64%</li>
+      <li>Netherlands: 3.51%</li>
+      <li>Germany: 3.05%</li>
+    </ul>
 
-    <footer>
-        <p>&copy; Ambitriber | All rights reserved</p>
-    </footer>
+    <h3>Dividend Strategy</h3>
+    <p>My portfolio has a 2.23% yield, with 53 out of 76 holdings paying dividends. 28 payments are expected in the next 30 days.</p>
+    <ul>
+      <li>OGZDL.L — 67.74% yield</li>
+      <li>PBR.A — 12.33% yield</li>
+      <li>PFE — 7.71% yield</li>
+      <li>STLA.US — 7.94% yield</li>
+      <li>BHP — 5.41% yield</li>
+    </ul>
+  </section>
 
-    <script>
-        fetch('market-updates.json')
-          .then(response => response.json())
-          .then(data => {
-            const container = document.getElementById('updates-container');
-            container.innerHTML = '';
-            data.updates.forEach(update => {
-              const article = document.createElement('article');
-              article.innerHTML = `<h3>${update.title}</h3><p>${update.content}</p>`;
-              container.appendChild(article);
-            });
-          })
-          .catch(error => {
-            document.getElementById('updates-container').innerText = 'Failed to load updates.';
-            console.error('Error fetching updates:', error);
-          });
-      </script>
+  <section id="updates">
+    <h2>Weekly Market Updates</h2>
 
+    <article>
+      <h3>Market Update</h3>
+      <p>As of April 14, 2025, global markets are experiencing heightened volatility due to escalating trade tensions. The S&P 500 experienced a significant drop of 10.5% in early April, marking one of the steepest declines since 2020. However, recent tariff exemptions on certain electronics have led to a modest rebound, with tech stocks showing resilience. <a href="https://www.investopedia.com/5-things-to-know-before-the-stock-market-opens-april-14-2025-11714495" target="_blank">[Source]</a></p>
+    </article>
+
+    <article>
+      <h3>Current Developments</h3>
+      <p>President Trump's announcement of "reciprocal tariffs" has led to a 4% weakening of the U.S. dollar, contrary to expectations. This shift has prompted investors to reallocate assets towards European and Asian markets, signaling a potential end to U.S. investment dominance. <a href="https://www.reuters.com/markets/currencies/is-dollar-weakness-panic-signal-or-healthy-rebalancing-klement-2025-04-14/" target="_blank">[Source]</a></p>
+    </article>
+
+    <article>
+      <h3>Market Reactions</h3>
+      <p>Oil prices have declined due to concerns over the U.S.-China trade war's impact on global growth. Brent crude futures fell to $64.47 a barrel, while WTI dropped to $61.23. The energy sector's downturn underscores the importance of diversification in investment portfolios. <a href="https://www.reuters.com/business/energy/oil-prices-flat-us-china-trade-war-weighs-global-growth-outlook-2025-04-14/" target="_blank">[Source]</a></p>
+    </article>
+
+    <article>
+      <h3>Portfolio Strategy</h3>
+      <p>Given the current market conditions, I am maintaining a diversified approach, focusing on sectors with strong fundamentals. The inclusion of dividend-paying stocks provides a buffer against volatility, and I am closely monitoring developments to make informed adjustments as necessary.</p>
+    </article>
+
+    <article>
+      <h3>Looking Ahead</h3>
+      <p>While the market faces challenges, opportunities arise for those prepared. I will continue to assess macroeconomic indicators and adjust the portfolio to navigate the evolving landscape, aiming for long-term growth and stability.</p>
+    </article>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <p>For more insights and updates, connect with Ambitriber:</p>
+    <ul>
+      <li><a href="https://bullaware.com/etoro/Ambitriber" target="_blank">BullAware Profile</a></li>
+      <li><a href="https://med.etoro.com" target="_blank">eToro</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; Ambitriber | All rights reserved</p>
+  </footer>
 </body>
 </html>
