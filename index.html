@@ -66,31 +66,7 @@
 
   <section id="updates">
     <h2>Weekly Market Updates</h2>
-
-    <article>
-      <h3>Market Update</h3>
-      <p>As of April 14, 2025, global markets are experiencing heightened volatility due to escalating trade tensions. The S&P 500 experienced a significant drop of 10.5% in early April, marking one of the steepest declines since 2020. However, recent tariff exemptions on certain electronics have led to a modest rebound, with tech stocks showing resilience. <a href="https://www.investopedia.com/5-things-to-know-before-the-stock-market-opens-april-14-2025-11714495" target="_blank">[Source]</a></p>
-    </article>
-
-    <article>
-      <h3>Current Developments</h3>
-      <p>President Trump's announcement of "reciprocal tariffs" has led to a 4% weakening of the U.S. dollar, contrary to expectations. This shift has prompted investors to reallocate assets towards European and Asian markets, signaling a potential end to U.S. investment dominance. <a href="https://www.reuters.com/markets/currencies/is-dollar-weakness-panic-signal-or-healthy-rebalancing-klement-2025-04-14/" target="_blank">[Source]</a></p>
-    </article>
-
-    <article>
-      <h3>Market Reactions</h3>
-      <p>Oil prices have declined due to concerns over the U.S.-China trade war's impact on global growth. Brent crude futures fell to $64.47 a barrel, while WTI dropped to $61.23. The energy sector's downturn underscores the importance of diversification in investment portfolios. <a href="https://www.reuters.com/business/energy/oil-prices-flat-us-china-trade-war-weighs-global-growth-outlook-2025-04-14/" target="_blank">[Source]</a></p>
-    </article>
-
-    <article>
-      <h3>Portfolio Strategy</h3>
-      <p>Given the current market conditions, I am maintaining a diversified approach, focusing on sectors with strong fundamentals. The inclusion of dividend-paying stocks provides a buffer against volatility, and I am closely monitoring developments to make informed adjustments as necessary.</p>
-    </article>
-
-    <article>
-      <h3>Looking Ahead</h3>
-      <p>While the market faces challenges, opportunities arise for those prepared. I will continue to assess macroeconomic indicators and adjust the portfolio to navigate the evolving landscape, aiming for long-term growth and stability.</p>
-    </article>
+    <div id="updates-container">Loading updates...</div>
   </section>
 
   <section id="contact">
@@ -105,5 +81,24 @@
   <footer>
     <p>&copy; Ambitriber | All rights reserved</p>
   </footer>
+
+  <script>
+    fetch('market-updates.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('updates-container');
+        container.innerHTML = '';
+        data.updates.forEach(update => {
+          const article = document.createElement('article');
+          article.innerHTML = `<h3>${update.title}</h3><p>${update.content}</p>`;
+          container.appendChild(article);
+        });
+      })
+      .catch(error => {
+        document.getElementById('updates-container').innerText = 'Failed to load updates.';
+        console.error('Error fetching updates:', error);
+      });
+  </script>
+
 </body>
 </html>
