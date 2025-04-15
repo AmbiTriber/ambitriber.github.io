@@ -33,26 +33,7 @@
 
     <section id="updates">
         <h2>Weekly Market Updates</h2>
-        <article>
-            <h3>Market Update</h3>
-            <p><!-- Brief context of current events --></p>
-        </article>
-        <article>
-            <h3>Current Developments</h3>
-            <p><!-- Key factors affecting the market --></p>
-        </article>
-        <article>
-            <h3>Market Reactions</h3>
-            <p><!-- How stocks, sectors, and global markets are responding --></p>
-        </article>
-        <article>
-            <h3>Portfolio Strategy</h3>
-            <p><!-- Investment adjustments or insights based on the situation --></p>
-        </article>
-        <article>
-            <h3>Looking Ahead</h3>
-            <p><!-- Future outlook and final thoughts --></p>
-        </article>
+        <div id="updates-container">Loading updates...</div>
     </section>
 
     <section id="contact">
@@ -63,5 +44,24 @@
     <footer>
         <p>&copy; Ambitriber | All rights reserved</p>
     </footer>
+
+    <script>
+        fetch('market-updates.json')
+          .then(response => response.json())
+          .then(data => {
+            const container = document.getElementById('updates-container');
+            container.innerHTML = '';
+            data.updates.forEach(update => {
+              const article = document.createElement('article');
+              article.innerHTML = `<h3>${update.title}</h3><p>${update.content}</p>`;
+              container.appendChild(article);
+            });
+          })
+          .catch(error => {
+            document.getElementById('updates-container').innerText = 'Failed to load updates.';
+            console.error('Error fetching updates:', error);
+          });
+      </script>
+
 </body>
 </html>
