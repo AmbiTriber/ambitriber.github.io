@@ -15,8 +15,11 @@
   <nav>
     <ul>
       <li><a href="#about">About Me</a></li>
+      <li><a href="#holdings">Top Holdings</a></li>
       <li><a href="#strategy">My Investment Strategy</a></li>
-      <li><a href="#updates">Weekly Market Updates</a></li>
+      <li><a href="#post">Weekly Post</a></li>
+      <li><a href="#updates">Market Updates</a></li>
+      <li><a href="#archive">Posts Archive</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -64,9 +67,26 @@
     </ul>
   </section>
 
+  <section id="holdings">
+    <h2>📊 My Top Holdings</h2>
+    <p class="section-subtitle">Updated weekly — here's what I'm betting on right now</p>
+    <div id="holdings-container">Loading holdings...</div>
+  </section>
+
+  <section id="post">
+    <h2>📝 This Week's Post</h2>
+    <div id="post-container">Loading post...</div>
+  </section>
+
   <section id="updates">
     <h2>Weekly Market Updates</h2>
     <div id="updates-container">Loading updates...</div>
+  </section>
+
+  <section id="archive">
+    <h2>📚 Posts Archive</h2>
+    <p class="section-subtitle">A running log of all my weekly posts</p>
+    <div id="archive-container">Loading archive...</div>
   </section>
 
   <section id="contact">
@@ -83,6 +103,7 @@
   </footer>
 
   <script>
+    // ── Load Market Updates ──
     fetch('market-updates.json')
       .then(response => response.json())
       .then(data => {
@@ -98,6 +119,80 @@
         document.getElementById('updates-container').innerText = 'Failed to load updates.';
         console.error('Error fetching updates:', error);
       });
+
+    // ── Load Top Holdings ──
+    fetch('top10.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('holdings-container');
+        container.innerHTML = `
+          <p class="total-value">Total Portfolio Value: <strong>$${data.total_portfolio_value.toLocaleString()}</strong></p>
+          <div class="holdings-table-wrapper">
+            <table class="holdings-table">
+              <thead>
+                <tr><th>#</th><th>Company</th><th>Ticker</th><th>Value</th><th>Weight</th></tr>
+              </thead>
+              <tbody>
+                ${data.top10.map(h => `
+                  <tr>
+                    <td class="rank">${h.rank}</td>
+                    <td class="company">${h.company}</td>
+                    <td class="ticker">${h.ticker}${h.leverage ? ` <span class="leverage-badge">${h.leverage}x</span>` : ''}</td>
+                    <td class="amount">$${h.amount.toLocaleString()}</td>
+                    <td class="pct">${h.percentage}%</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+          <p class="generated-at">Last updated: ${data.generated_at}</p>
+        `;
+      })
+      .catch(error => {
+        document.getElementById('holdings-container').innerText = 'Failed to load holdings.';
+        console.error('Error fetching holdings:', error);
+      });
+
+    // ── Load Weekly Post ──
+    fetch('weekly-post.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('post-container');
+        container.innerHTML = `
+          <article class="post-article">
+            <h3>${data.title}</h3>
+            <p class="post-date">${data.date}</p>
+            <div class="post-body">${data.content}</div>
+          </article>
+        `;
+      })
+      .catch(error => {
+        document.getElementById('post-container').innerText = 'No post available yet.';
+        console.error('Error fetching post:', error);
+      });
+
+    // ── Load Posts Archive ──
+    fetch('posts-archive.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('archive-container');
+        if (!data.posts || data.posts.length === 0) {
+          container.innerHTML = '<p>No archived posts yet. Check back soon!</p>';
+          return;
+        }
+        container.innerHTML = data.posts.map(p => `
+          <article class="archive-entry">
+            <h3>${p.title}</h3>
+            <p class="post-date">${p.date}</p>
+            <p>${p.content}</p>
+          </article>
+        `).join('');
+      })
+      .catch(error => {
+        document.getElementById('archive-container').innerText = 'Failed to load archive.';
+        console.error('Error fetching archive:', error);
+      });
+  </script>
   </script>
 
 </body>

@@ -1,25 +1,24 @@
 {
-    "updates": [
-      {
-        "title": "Market Update",
-        "content": "Global markets dropped sharply on April 14, 2025, as trade tensions spiked. However, selective tech rebounds are underway."
-      },
-      {
-        "title": "Current Developments",
-        "content": "The dollar weakened 4% unexpectedly, pushing investors toward European and Asian equities."
-      },
-      {
-        "title": "Market Reactions",
-        "content": "Oil prices slid as Brent hit $64.47 and WTI $61.23. Investors are turning defensive amid uncertainty."
-      },
-      {
-        "title": "Portfolio Strategy",
-        "content": "I’m holding dividend-heavy positions and rebalancing tech exposure gradually to maintain resilience."
-      },
-      {
-        "title": "Looking Ahead",
-        "content": "Expect volatility, but also pockets of opportunity. Stay diversified and flexible."
-      }
-    ]
-  }
-  
+  "updates": [
+    {
+      "title": "Market Update",
+      "content": "The S&P 500 index continues to inch closer to a new high, driven by record-breaking U.S. travel demand and strong earnings reports from tech giants."
+    },
+    {
+      "title": "Current Developments",
+      "content": "The recent presidential debate has thrown huge uncertainty in the American economy and U.S.'s international standing, with economists predicting a potential impact on consumer spending and inflation data."
+    },
+    {
+      "title": "Market Reactions",
+      "content": "The Dow Jones Industrial Average and Nasdaq-100 have seen a slight increase in recent days, with the tech sector leading the charge, while oil prices have surged to a three-month high due to supply disruptions and seasonal demand."
+    },
+    {
+      "title": "Portfolio Strategy",
+      "content": "A diversified long-term investor should consider maintaining a balanced portfolio with a mix of growth stocks, value stocks, and dividend-paying stocks, while also keeping an eye on inflation data and potential changes in consumer spending patterns."
+    },
+    {
+      "title": "Looking Ahead",
+      "content": "Next week, investors should watch for the release of key economic data, including the consumer price index (CPI) and retail sales figures, which could provide further insight into the state of the U.S. economy."
+    }
+  ]
+}

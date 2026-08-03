@@ -117,3 +117,139 @@ section, article, nav a {
   nav li { margin: 5px 0; }
   section { padding: 20px 10px; }
 }
+
+/* ── Section subtitle ── */
+.section-subtitle {
+  color: #666;
+  font-size: 1rem;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+
+/* ── Top Holdings Table ── */
+.total-value {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  color: var(--etoro-gray);
+}
+
+.holdings-table-wrapper {
+  overflow-x: auto;
+  margin: 0 auto;
+  max-width: 850px;
+}
+
+.holdings-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--etoro-white);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.holdings-table thead {
+  background: var(--etoro-green);
+  color: var(--etoro-white);
+}
+
+.holdings-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.holdings-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.holdings-table tbody tr:hover {
+  background: #f0faf0;
+}
+
+.holdings-table .rank {
+  font-weight: bold;
+  color: var(--etoro-green);
+  font-size: 1.1rem;
+}
+
+.holdings-table .company {
+  font-weight: 600;
+}
+
+.holdings-table .ticker {
+  color: #666;
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+.leverage-badge {
+  background: #ff6b35;
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.holdings-table .amount {
+  font-weight: 600;
+  text-align: right;
+}
+
+.holdings-table .pct {
+  text-align: right;
+  font-weight: 600;
+  color: var(--etoro-green);
+}
+
+.generated-at {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  color: #999;
+  font-style: italic;
+}
+
+/* ── Weekly Post ── */
+.post-article {
+  text-align: left;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.post-article h3 {
+  color: var(--etoro-green);
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.post-date {
+  color: #999;
+  font-size: 0.85rem;
+  margin-bottom: 15px;
+  font-style: italic;
+}
+
+.post-body {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  white-space: pre-line;
+}
+
+/* ── Posts Archive ── */
+.archive-entry {
+  text-align: left;
+  max-width: 750px;
+  margin: 15px auto;
+  border-left: 4px solid var(--etoro-green);
+  padding-left: 20px;
+}
+
+.archive-entry h3 {
+  color: var(--etoro-green);
+  font-size: 1.2rem;
+  margin-bottom: 3px;
+}
