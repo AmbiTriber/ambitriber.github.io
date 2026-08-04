@@ -1,0 +1,9 @@
+# Don't commit actual secrets
+.env
+.env.web
+
+# Virtual environment
+.venv/
+
+# VS Code settings
+.vscode/
