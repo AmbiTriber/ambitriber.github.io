@@ -45,12 +45,8 @@ git config user.name "Ambitriber" 2>/dev/null
 git add top10.json market-updates.json weekly-post.json posts-archive.json index.html tribercss.css
 git commit -m "Weekly update: $(date '+%Y-%m-%d')" || echo "Nothing to commit"
 
-# Use GITHUB_TOKEN from .env.web if set; otherwise fall back to credential helper
-if [ -n "${GITHUB_TOKEN:-}" ]; then
-  git push "https://AmbiTriber:${GITHUB_TOKEN}@github.com/AmbiTriber/ambitriber.github.io.git" main
-else
-  git push origin main
-fi
+# Traditional git push — relies on local git credentials (SSH or credential helper)
+git push origin main
 
 echo ""
 echo "[5/5] ✅ Pipeline complete!"
