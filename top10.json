@@ -1,75 +1,64 @@
 {
   "generated_at": "2026-08-03",
-  "total_portfolio_value": 47372.76,
   "top10": [
     {
       "rank": 1,
       "company": "iShares MSCI ACWI UCITS ETF",
       "ticker": "IUSQ.DE",
-      "amount": 8916.31,
       "percentage": 18.82
     },
     {
       "rank": 2,
       "company": "iShares Edge MSCI USA Value Factor UCITS ETF",
       "ticker": "QDVI.DE",
-      "amount": 4796.06,
       "percentage": 10.12
     },
     {
       "rank": 3,
       "company": "iShares Core Global Aggregate Bond UCITS ETF",
       "ticker": "EUNA.DE",
-      "amount": 2519.37,
       "percentage": 5.32
     },
     {
       "rank": 4,
       "company": "Alibaba-ADR",
       "ticker": "BABA",
-      "amount": 2152.01,
       "percentage": 4.54
     },
     {
       "rank": 5,
       "company": "SPDR S&P US Dividend Aristocrats UCITS ETF",
       "ticker": "UDVD.L",
-      "amount": 1957.93,
       "percentage": 4.13
     },
     {
       "rank": 6,
       "company": "Xtrackers S&P 500 Equal Weight UCITS ETF",
       "ticker": "XDEW.DE",
-      "amount": 1409.73,
       "percentage": 2.98
     },
     {
       "rank": 7,
       "company": "iShares MSCI EM Latin America UCITS ETF",
       "ticker": "IUSC.DE",
-      "amount": 1318.89,
       "percentage": 2.78
     },
     {
       "rank": 8,
       "company": "iShares Core MSCI EM IMI UCITS ETF",
       "ticker": "IS3N.DE",
-      "amount": 1316.62,
       "percentage": 2.78
     },
     {
       "rank": 9,
       "company": "iShares Developed Markets Property Yield UCITS ETF",
       "ticker": "IQQ6.DE",
-      "amount": 1220.97,
       "percentage": 2.58
     },
     {
       "rank": 10,
       "company": "VanEck Gold Miners UCITS ETF",
       "ticker": "G2X.DE",
-      "amount": 933.01,
       "percentage": 1.97
     }
   ]

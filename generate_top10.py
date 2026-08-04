@@ -57,7 +57,6 @@ def main():
             "rank": i,
             "company": item["company"],
             "ticker": item["ticker"],
-            "amount": round(item["amount"], 2),
             "percentage": pct,
         }
         # Only include leverage if > 1x
@@ -68,7 +67,6 @@ def main():
 
     result = {
         "generated_at": "2026-08-03",
-        "total_portfolio_value": round(total_value, 2),
         "top10": output,
     }
 
@@ -76,10 +74,9 @@ def main():
         json.dump(result, f, indent=2)
 
     print(f"✅ Top 10 holdings written to {OUTPUT_PATH}")
-    print(f"   Total portfolio value: ${total_value:.2f}")
     for entry in output:
         lev = f" (leverage: {entry['leverage']}x)" if "leverage" in entry else ""
-        print(f"   {entry['rank']}. {entry['company']} ({entry['ticker']}) - ${entry['amount']:.2f} - {entry['percentage']}%{lev}")
+        print(f"   {entry['rank']}. {entry['company']} ({entry['ticker']}) - {entry['percentage']}%{lev}")
 
 
 if __name__ == "__main__":

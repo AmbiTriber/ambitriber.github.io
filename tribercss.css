@@ -127,12 +127,6 @@ section, article, nav a {
 }
 
 /* ── Top Holdings Table ── */
-.total-value {
-  font-size: 1.3rem;
-  margin-bottom: 20px;
-  color: var(--etoro-gray);
-}
-
 .holdings-table-wrapper {
   overflow-x: auto;
   margin: 0 auto;
@@ -193,11 +187,6 @@ section, article, nav a {
   padding: 2px 6px;
   border-radius: 4px;
   font-family: 'Segoe UI', sans-serif;
-}
-
-.holdings-table .amount {
-  font-weight: 600;
-  text-align: right;
 }
 
 .holdings-table .pct {

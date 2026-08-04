@@ -126,11 +126,10 @@
       .then(data => {
         const container = document.getElementById('holdings-container');
         container.innerHTML = `
-          <p class="total-value">Total Portfolio Value: <strong>$${data.total_portfolio_value.toLocaleString()}</strong></p>
           <div class="holdings-table-wrapper">
             <table class="holdings-table">
               <thead>
-                <tr><th>#</th><th>Company</th><th>Ticker</th><th>Value</th><th>Weight</th></tr>
+                <tr><th>#</th><th>Company</th><th>Ticker</th><th>Weight</th></tr>
               </thead>
               <tbody>
                 ${data.top10.map(h => `
@@ -138,7 +137,6 @@
                     <td class="rank">${h.rank}</td>
                     <td class="company">${h.company}</td>
                     <td class="ticker">${h.ticker}${h.leverage ? ` <span class="leverage-badge">${h.leverage}x</span>` : ''}</td>
-                    <td class="amount">$${h.amount.toLocaleString()}</td>
                     <td class="pct">${h.percentage}%</td>
                   </tr>
                 `).join('')}
