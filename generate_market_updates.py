@@ -69,6 +69,88 @@ def call_cloudflare_ai(prompt: str, max_tokens: int = 600) -> str:
     return data["result"]["choices"][0]["message"]["content"].strip()
 
 
+def repair_truncated_json(raw: str) -> str:
+    """Attempt to repair truncated JSON by closing unclosed brackets/arrays."""
+    raw = raw.strip()
+    # Count opening vs closing braces/brackets
+    open_braces = raw.count("{")
+    close_braces = raw.count("}")
+    open_brackets = raw.count("[")
+    close_brackets = raw.count("]")
+
+    # If the last complete value is a string, close it
+    # Find the last quote and check if it's closed
+    last_dquote = raw.rfind('"')
+    if last_dquote > 0:
+        # Count quotes after the last newline before last_dquote to check if string is closed
+        after_last_quote = raw[last_dquote + 1:]
+        # If there's content after the last quote that isn't a structural char, the string is truncated
+        if after_last_quote and not after_last_quote.startswith(("}", "]", ",", " ", "\n")):
+            raw = raw[:last_dquote + 1]  # truncate incomplete string
+
+    # Close unclosed strings (find unterminated quotes)
+    # Add missing closing brackets/braces
+    raw += "}" * (open_braces - close_braces)
+    raw += "]" * (open_brackets - close_brackets)
+    return raw
+
+
+def extract_json(text: str) -> dict:
+    """Try to parse JSON from model output, with repair fallbacks."""
+    text = text.strip()
+    # Strip markdown code fences
+    if text.startswith("```"):
+        text = text.split("\n", 1)[-1]
+        for suffix in ["```json", "```"]:
+            if text.endswith(suffix):
+                text = text[:-len(suffix)]
+        text = text.strip()
+
+    # Clean invalid escape sequences
+    import re
+    text = re.sub(r'\\([^"\\/bfnrtu])', r'\1', text)
+
+    # Attempt 1: direct parse
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        pass
+
+    # Attempt 2: repair truncated JSON
+    repaired = repair_truncated_json(text)
+    try:
+        return json.loads(repaired)
+    except json.JSONDecodeError:
+        pass
+
+    # Attempt 3: try to find a complete JSON object via regex
+    match = re.search(r'\{.*"updates"\s*:\s*\[.*\]\}', text, re.DOTALL)
+    if match:
+        try:
+            return json.loads(match.group())
+        except json.JSONDecodeError:
+            pass
+
+    # Attempt 4: try to find any complete JSON object
+    brace_depth = 0
+    start = -1
+    for i, ch in enumerate(text):
+        if ch == '{':
+            if start == -1:
+                start = i
+            brace_depth += 1
+        elif ch == '}':
+            brace_depth -= 1
+            if brace_depth == 0 and start != -1:
+                candidate = text[start:i + 1]
+                try:
+                    return json.loads(candidate)
+                except json.JSONDecodeError:
+                    start = -1  # reset and keep looking
+
+    raise json.JSONDecodeError("Could not extract valid JSON from model output", text, 0)
+
+
 def backup_existing_file():
     if os.path.exists("market-updates.json"):
         timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
@@ -104,21 +186,8 @@ IMPORTANT: Return ONLY the JSON object. No markdown, no explanation."""
 
     print("🤖 Calling Cloudflare Workers AI...")
     try:
-        raw = call_cloudflare_ai(prompt, max_tokens=600)
-        # Strip any markdown code fences if the model wraps it
-        raw = raw.strip()
-        if raw.startswith("```"):
-            raw = raw.split("\n", 1)[-1]
-            if raw.endswith("```"):
-                raw = raw[:-3]
-            raw = raw.strip()
-
-        # Clean invalid escape sequences (e.g. \&, \s) that some models produce
-        # Replace invalid backslash sequences with the character itself
-        import re
-        raw_clean = re.sub(r'\\([^"\\/bfnrtu])', r'\1', raw)
-
-        parsed = json.loads(raw_clean)
+        raw = call_cloudflare_ai(prompt, max_tokens=800)
+        parsed = extract_json(raw)
 
         backup_existing_file()
 

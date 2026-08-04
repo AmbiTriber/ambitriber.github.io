@@ -41,7 +41,6 @@ def build_prompt(top10_data):
 
 Today is {today}. Here are your current top 10 holdings:
 {holdings_desc}
-Total portfolio value: ${top10_data['total_portfolio_value']:,.2f}
 
 Write a ~200 word first-person weekly post from Ambitriber's perspective. The post should:
 - Be conversational and friendly, as if talking to your copiers and followers
