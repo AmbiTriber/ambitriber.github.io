@@ -108,7 +108,8 @@
           <h3>Dividend Strategy</h3>
           <p>My portfolio has a ${data.dividends.weighted_yield}% weighted dividend yield, with ${data.dividends.payer_count} out of ${data.dividends.total_analyzed} analyzed stock holdings paying dividends.</p>
           <ul>${topY}</ul>
-          <p class="generated-at">Based on ${data.positions_analyzed} positions covering ${data.coverage_pct}% of equity holdings (ETFs excluded). Last updated: ${data.generated_at}</p>
+          <p class="strategy-footnote">📊 These breakdowns are based on the individual stocks in my portfolio that provide this data — ETFs and some smaller positions aren't included, so think of it as a rough sketch, not an exact map.</p>
+          <p class="generated-at">Last updated: ${data.generated_at}</p>
         `;
       })
       .catch(error => {

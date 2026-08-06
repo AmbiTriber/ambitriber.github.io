@@ -236,6 +236,17 @@ section h2::after {
   flex-shrink: 0;
 }
 
+.strategy-footnote {
+  font-size: 0.82rem;
+  color: var(--dark-400);
+  padding: 12px 16px;
+  background: var(--green-50);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--green-300);
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
 /* ── About section ── */
 #about p {
   max-width: 680px;
