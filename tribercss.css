@@ -193,7 +193,8 @@ section h2::after {
   margin: 28px 0 12px;
 }
 
-#strategy > p {
+#strategy > p,
+#strategy-container p {
   color: var(--dark-500);
   margin-bottom: 8px;
   font-size: 1rem;

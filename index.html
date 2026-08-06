@@ -35,39 +35,7 @@
   <section id="strategy">
     <h2>My Investment Strategy</h2>
     <p>I invest in a wide range of sectors and regions to spread risk and capture opportunities. My portfolio includes individual stocks and ETFs, emphasizing dividend-paying assets and long-term performance.</p>
-
-    <h3>Sector Allocation</h3>
-    <ul>
-      <li>Technology Services: 33.23%</li>
-      <li>Retail Trade: 14.13%</li>
-      <li>Health Technology: 11.37%</li>
-      <li>Consumer Non-Durables: 6.54%</li>
-      <li>Electronic Technology: 5.79%</li>
-      <li>ETFs: 5.56%</li>
-      <li>Energy Minerals: 4.51%</li>
-      <li>Finance: 3.96%</li>
-      <li>Non-Energy Minerals: 3.54%</li>
-      <li>Consumer Durables: 3.41%</li>
-    </ul>
-
-    <h3>Geographical Allocation</h3>
-    <ul>
-      <li>United States: 52.56%</li>
-      <li>China: 14.2%</li>
-      <li>Sweden: 3.64%</li>
-      <li>Netherlands: 3.51%</li>
-      <li>Germany: 3.05%</li>
-    </ul>
-
-    <h3>Dividend Strategy</h3>
-    <p>My portfolio has a 2.23% yield, with 53 out of 76 holdings paying dividends. 28 payments are expected in the next 30 days.</p>
-    <ul>
-      <li>OGZDL.L — 67.74% yield</li>
-      <li>PBR.A — 12.33% yield</li>
-      <li>PFE — 7.71% yield</li>
-      <li>STLA.US — 7.94% yield</li>
-      <li>BHP — 5.41% yield</li>
-    </ul>
+    <div id="strategy-container">Loading strategy...</div>
   </section>
 
   <section id="holdings">
@@ -121,6 +89,31 @@
       .catch(error => {
         document.getElementById('updates-container').innerText = 'Failed to load updates.';
         console.error('Error fetching updates:', error);
+      });
+
+    // ── Load Strategy Breakdown ──
+    fetch('strategy.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('strategy-container');
+        const sectors = data.sectors.map(s => `<li>${s.sector}: ${s.percentage}%</li>`).join('');
+        const geography = data.geography.map(g => `<li>${g.country}: ${g.percentage}%</li>`).join('');
+        const topY = data.dividends.top_yielders.map(d => `<li>${d.ticker} — ${d.yield}% yield</li>`).join('');
+
+        container.innerHTML = `
+          <h3>Sector Allocation</h3>
+          <ul>${sectors}</ul>
+          <h3>Geographical Allocation</h3>
+          <ul>${geography}</ul>
+          <h3>Dividend Strategy</h3>
+          <p>My portfolio has a ${data.dividends.weighted_yield}% weighted dividend yield, with ${data.dividends.payer_count} out of ${data.dividends.total_analyzed} analyzed stock holdings paying dividends.</p>
+          <ul>${topY}</ul>
+          <p class="generated-at">Based on ${data.positions_analyzed} positions covering ${data.coverage_pct}% of equity holdings (ETFs excluded). Last updated: ${data.generated_at}</p>
+        `;
+      })
+      .catch(error => {
+        document.getElementById('strategy-container').innerText = 'Strategy data not available yet.';
+        console.error('Error fetching strategy:', error);
       });
 
     // ── Load Top Holdings ──

@@ -1,0 +1,133 @@
+{
+  "generated_at": "2026-08-06",
+  "positions_analyzed": 28,
+  "coverage_pct": 32.8,
+  "sectors": [
+    {
+      "sector": "Consumer Cyclical",
+      "percentage": 22.16
+    },
+    {
+      "sector": "Basic Materials",
+      "percentage": 15.31
+    },
+    {
+      "sector": "Healthcare",
+      "percentage": 14.12
+    },
+    {
+      "sector": "Industrials",
+      "percentage": 12.99
+    },
+    {
+      "sector": "Consumer Defensive",
+      "percentage": 10.33
+    },
+    {
+      "sector": "Energy",
+      "percentage": 9.43
+    },
+    {
+      "sector": "Technology",
+      "percentage": 6.07
+    },
+    {
+      "sector": "Financial Services",
+      "percentage": 4.25
+    },
+    {
+      "sector": "Communication Services",
+      "percentage": 3.03
+    },
+    {
+      "sector": "Utilities",
+      "percentage": 2.3
+    }
+  ],
+  "geography": [
+    {
+      "country": "United States",
+      "percentage": 43.1
+    },
+    {
+      "country": "China",
+      "percentage": 13.87
+    },
+    {
+      "country": "Brazil",
+      "percentage": 8.49
+    },
+    {
+      "country": "Norway",
+      "percentage": 5.1
+    },
+    {
+      "country": "Netherlands",
+      "percentage": 4.63
+    },
+    {
+      "country": "Ireland",
+      "percentage": 4.12
+    },
+    {
+      "country": "Greece",
+      "percentage": 4.03
+    },
+    {
+      "country": "United Kingdom",
+      "percentage": 3.88
+    },
+    {
+      "country": "France",
+      "percentage": 3.67
+    },
+    {
+      "country": "Mexico",
+      "percentage": 2.82
+    },
+    {
+      "country": "Israel",
+      "percentage": 2.33
+    },
+    {
+      "country": "Denmark",
+      "percentage": 2.3
+    },
+    {
+      "country": "Hong Kong",
+      "percentage": 1.67
+    }
+  ],
+  "dividends": {
+    "weighted_yield": 3.52,
+    "payer_count": 22,
+    "total_analyzed": 28,
+    "top_yielders": [
+      {
+        "ticker": "STLA.US",
+        "company": "Stellantis NV",
+        "yield": 10.58
+      },
+      {
+        "ticker": "PBR",
+        "company": "Petroleo Brasileiro SA Petrobras-ADR",
+        "yield": 9.6
+      },
+      {
+        "ticker": "VALE",
+        "company": "Vale SA-ADR",
+        "yield": 8.0
+      },
+      {
+        "ticker": "PFE",
+        "company": "Pfizer",
+        "yield": 6.66
+      },
+      {
+        "ticker": "ABEV",
+        "company": "Ambev ADR",
+        "yield": 5.58
+      }
+    ]
+  }
+}
