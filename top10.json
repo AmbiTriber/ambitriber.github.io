@@ -3,63 +3,63 @@
   "top10": [
     {
       "rank": 1,
-      "company": "iShares MSCI ACWI UCITS ETF",
-      "ticker": "IUSQ.DE",
-      "percentage": 18.82
+      "company": "iShares 20+ Year Treasury Bond ETF ",
+      "ticker": "TLT",
+      "percentage": 14.25
     },
     {
       "rank": 2,
-      "company": "iShares Edge MSCI USA Value Factor UCITS ETF",
-      "ticker": "QDVI.DE",
-      "percentage": 10.12
+      "company": "Alibaba Group Holding Ltd (Hong Kong)",
+      "ticker": "9988.HK",
+      "percentage": 11.55
     },
     {
       "rank": 3,
-      "company": "iShares Core Global Aggregate Bond UCITS ETF",
-      "ticker": "EUNA.DE",
-      "percentage": 5.32
+      "company": "Berkshire Hathaway Inc",
+      "ticker": "BRK.B",
+      "percentage": 9.11
     },
     {
       "rank": 4,
-      "company": "Alibaba-ADR",
-      "ticker": "BABA",
-      "percentage": 4.54
+      "company": "Sanofi",
+      "ticker": "SAN.PA",
+      "percentage": 4.75
     },
     {
       "rank": 5,
-      "company": "SPDR S&P US Dividend Aristocrats UCITS ETF",
-      "ticker": "UDVD.L",
-      "percentage": 4.13
+      "company": "Fiserv Inc",
+      "ticker": "FISV",
+      "percentage": 4.75
     },
     {
       "rank": 6,
-      "company": "Xtrackers S&P 500 Equal Weight UCITS ETF",
-      "ticker": "XDEW.DE",
-      "percentage": 2.98
+      "company": "Pfizer",
+      "ticker": "PFE",
+      "percentage": 3.42
     },
     {
       "rank": 7,
-      "company": "iShares MSCI EM Latin America UCITS ETF",
-      "ticker": "IUSC.DE",
-      "percentage": 2.78
+      "company": "Medtronic PLC",
+      "ticker": "MDT.US",
+      "percentage": 3.39
     },
     {
       "rank": 8,
-      "company": "iShares Core MSCI EM IMI UCITS ETF",
-      "ticker": "IS3N.DE",
-      "percentage": 2.78
+      "company": "MercadoLibre Inc",
+      "ticker": "MELI",
+      "percentage": 3.32
     },
     {
       "rank": 9,
-      "company": "iShares Developed Markets Property Yield UCITS ETF",
-      "ticker": "IQQ6.DE",
-      "percentage": 2.58
+      "company": "Tencent",
+      "ticker": "0700.HK",
+      "percentage": 3.25
     },
     {
       "rank": 10,
-      "company": "VanEck Gold Miners UCITS ETF",
-      "ticker": "G2X.DE",
-      "percentage": 1.97
+      "company": "FMC Corp",
+      "ticker": "FMC",
+      "percentage": 2.9
     }
   ]
 }
