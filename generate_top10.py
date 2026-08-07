@@ -1,25 +1,29 @@
 #!/usr/bin/env python3
-"""Generate the top 10 portfolio holdings from eToro data."""
+"""Generate the top 10 portfolio holdings from eToro portfolio data.
+Reads portfolio-holdings.json (produced by etoro_portfolio.py) and outputs top10.json."""
 
 import json
 import os
 import sys
+from datetime import date
 
 # Paths
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-PORTFOLIO_PATH = os.path.join(os.path.expanduser("~"), "etoro-workspace", "portfolio-holdings.json")
+PORTFOLIO_PATH = os.path.join(SCRIPT_DIR, "portfolio-holdings.json")
 OUTPUT_PATH = os.path.join(SCRIPT_DIR, "top10.json")
 
 
 def main():
     if not os.path.exists(PORTFOLIO_PATH):
         print(f"Error: Portfolio file not found at {PORTFOLIO_PATH}", file=sys.stderr)
+        print("Run: python etoro_portfolio.py -o portfolio-holdings.json", file=sys.stderr)
         sys.exit(1)
 
     with open(PORTFOLIO_PATH, "r") as f:
         data = json.load(f)
 
-    positions = data.get("clientPortfolio", {}).get("positions", [])
+    # New format: positions are at top-level "positions" key
+    positions = data.get("positions", [])
     if not positions:
         print("Error: No positions found in portfolio data", file=sys.stderr)
         sys.exit(1)
@@ -27,7 +31,9 @@ def main():
     # Aggregate positions by ticker (same stock may appear in multiple positions)
     by_ticker = {}
     for p in positions:
-        ticker = p["ticker"]
+        ticker = p.get("tickerSymbol", "")
+        if not ticker:
+            continue  # skip positions with no resolved ticker
         name = p.get("companyName", ticker)
         leverage = p.get("leverage", 1)
         amount = p.get("amount", 0)
@@ -66,14 +72,14 @@ def main():
         output.append(entry)
 
     result = {
-        "generated_at": "2026-08-03",
+        "generated_at": str(date.today()),
         "top10": output,
     }
 
     with open(OUTPUT_PATH, "w") as f:
         json.dump(result, f, indent=2)
 
-    print(f"✅ Top 10 holdings written to {OUTPUT_PATH}")
+    print(f"Top 10 holdings written to {OUTPUT_PATH}")
     for entry in output:
         lev = f" (leverage: {entry['leverage']}x)" if "leverage" in entry else ""
         print(f"   {entry['rank']}. {entry['company']} ({entry['ticker']}) - {entry['percentage']}%{lev}")

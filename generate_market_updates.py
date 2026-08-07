@@ -7,7 +7,7 @@ import json
 import os
 from datetime import datetime
 
-# ── Config ──
+# -- Config --
 CF_ACCOUNT_ID = os.environ["CF_ACCOUNT_ID"]
 CF_API_TOKEN = os.environ["CF_API_TOKEN"]
 CF_MODEL = "@cf/meta/llama-3.1-8b-instruct"  # free tier, 10K req/day
@@ -15,7 +15,7 @@ POLYGON_API_KEY = os.environ.get("POLYGON_API_KEY", "")
 
 CF_AI_URL = f"https://api.cloudflare.com/client/v4/accounts/{CF_ACCOUNT_ID}/ai/run/{CF_MODEL}"
 
-# ── Market indices / ETFs to pull news for context ──
+# -- Market indices / ETFs to pull news for context --
 MARKET_TICKERS = ["SPY", "QQQ", "IWM", "DIA", "GLD", "USO"]
 
 
@@ -28,7 +28,7 @@ def get_ticker_news(ticker: str, limit: int = 3):
         params = {"ticker": ticker, "limit": limit, "apiKey": POLYGON_API_KEY}
         resp = requests.get(url, params=params, timeout=15)
         if resp.status_code == 429:
-            print(f"  ⏳ Polygon rate limited for {ticker}, skipping.")
+            print(f"  Polygon rate limited for {ticker}, skipping.")
             return []
         resp.raise_for_status()
         data = resp.json()
@@ -39,7 +39,7 @@ def get_ticker_news(ticker: str, limit: int = 3):
                 items.append(" | ".join(parts))
         return items[:limit]
     except Exception as e:
-        print(f"  ⚠️  Polygon news fetch failed for {ticker}: {e}")
+        print(f"  WARNING: Polygon news fetch failed for {ticker}: {e}")
         return []
 
 
@@ -53,7 +53,7 @@ def gather_market_context():
         snippets = get_ticker_news(t, limit=2)
         for s in snippets:
             all_snippets.append(f"[{t}] {s}")
-    return "\n".join(all_snippets) if all_snippets else "(No news context available — generate from general knowledge)"
+    return "\n".join(all_snippets) if all_snippets else "(No news context available -- generate from general knowledge)"
 
 
 def call_cloudflare_ai(prompt: str, max_tokens: int = 600) -> str:
@@ -157,13 +157,13 @@ def backup_existing_file():
         backup_filename = f"backups/market-updates-{timestamp}.json"
         os.makedirs("backups", exist_ok=True)
         os.rename("market-updates.json", backup_filename)
-        print(f"📦 Backed up previous update to {backup_filename}")
+        print(f"Backed up previous update to {backup_filename}")
 
 
 def main():
     today = datetime.today().strftime("%B %d, %Y")
 
-    print("📡 Gathering market news context from Polygon...")
+    print("Gathering market news context from Polygon...")
     market_context = gather_market_context()
 
     prompt = f"""You are a financial markets analyst writing a weekly update for a retail investor blog.
@@ -172,19 +172,19 @@ Today is {today}. Here is recent market news for context:
 
 {market_context}
 
-Write a structured weekly market update in exactly 5 sections. Return ONLY valid JSON — no markdown, no code fences, no extra text:
+Write a structured weekly market update in exactly 5 sections. Return ONLY valid JSON -- no markdown, no code fences, no extra text:
 
 {{"updates": [
   {{"title": "Market Update", "content": "1-2 sentences on overall market performance this week."}},
   {{"title": "Current Developments", "content": "1-2 sentences on key macro events, earnings, or policy changes."}},
-  {{"title": "Market Reactions", "content": "1-2 sentences on how markets reacted — sector moves, sentiment shifts."}},
+  {{"title": "Market Reactions", "content": "1-2 sentences on how markets reacted -- sector moves, sentiment shifts."}},
   {{"title": "Portfolio Strategy", "content": "1-2 sentences on what a diversified long-term investor should consider."}},
   {{"title": "Looking Ahead", "content": "1-2 sentences on what to watch next week."}}
 ]}}
 
 IMPORTANT: Return ONLY the JSON object. No markdown, no explanation."""
 
-    print("🤖 Calling Cloudflare Workers AI...")
+    print("Calling Cloudflare Workers AI...")
     try:
         raw = call_cloudflare_ai(prompt, max_tokens=800)
         parsed = extract_json(raw)
@@ -193,9 +193,9 @@ IMPORTANT: Return ONLY the JSON object. No markdown, no explanation."""
 
         with open("market-updates.json", "w") as f:
             json.dump(parsed, f, indent=2)
-        print("✅ Market updates saved to market-updates.json")
+        print("Market updates saved to market-updates.json")
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f"ERROR: {e}")
         print(f"   Raw response: {raw if 'raw' in dir() else 'N/A'}")
         raise
 

@@ -9,7 +9,7 @@ import sys
 import requests
 from datetime import datetime
 
-# ── Config ──
+# -- Config --
 CF_ACCOUNT_ID = os.environ["CF_ACCOUNT_ID"]
 CF_API_TOKEN = os.environ["CF_API_TOKEN"]
 CF_MODEL = "@cf/meta/llama-3.1-8b-instruct"  # free tier, 10K req/day
@@ -30,7 +30,7 @@ def load_top10():
 def build_prompt(top10_data):
     """Build a prompt that includes portfolio context."""
     holdings_desc = "\n".join(
-        f"{h['rank']}. {h['company']} ({h['ticker']}) — {h['percentage']}% of portfolio"
+        f"{h['rank']}. {h['company']} ({h['ticker']}) -- {h['percentage']}% of portfolio"
         + (f", {h['leverage']}x leverage" if h.get("leverage") else "")
         for h in top10_data["top10"]
     )
@@ -47,7 +47,7 @@ Write a ~200 word first-person weekly post from Ambitriber's perspective. The po
 - Comment on 2-3 of your top holdings and why you're holding them
 - Briefly mention any strategic moves you're considering or why you're staying the course
 - End with a forward-looking note and encouragement
-- Do NOT use markdown — plain text only, with natural paragraph breaks
+- Do NOT use markdown -- plain text only, with natural paragraph breaks
 
 Return ONLY the post content as plain text, no JSON wrapper, no title."""
 
@@ -71,7 +71,7 @@ def call_cloudflare_ai(prompt: str, max_tokens: int = 500) -> str:
 def generate_title():
     """Simple date-based title."""
     today = datetime.now().strftime("%B %d, %Y")
-    return f"Weekly Portfolio Check-In — {today}"
+    return f"Weekly Portfolio Check-In -- {today}"
 
 
 def save_weekly_post(title, content):
@@ -83,7 +83,7 @@ def save_weekly_post(title, content):
     }
     with open(WEEKLY_POST_PATH, "w") as f:
         json.dump(post, f, indent=2)
-    print(f"✅ Weekly post saved to {WEEKLY_POST_PATH}")
+    print(f"Weekly post saved to {WEEKLY_POST_PATH}")
     return post
 
 
@@ -98,29 +98,29 @@ def append_to_archive(post):
     # Check if this post (by date) is already in the archive
     existing_dates = {p["date"] for p in archive.get("posts", [])}
     if post["date"] in existing_dates:
-        print(f"⚠️  Post for {post['date']} already in archive, skipping append.")
+        print(f"WARNING: Post for {post['date']} already in archive, skipping append.")
         return
 
     archive["posts"].insert(0, post)  # newest first
     with open(ARCHIVE_PATH, "w") as f:
         json.dump(archive, f, indent=2)
-    print(f"✅ Post appended to archive ({len(archive['posts'])} total)")
+    print(f"Post appended to archive ({len(archive['posts'])} total)")
 
 
 def main():
     if not os.path.exists(TOP10_PATH):
-        print(f"❌ top10.json not found at {TOP10_PATH}. Run generate_top10.py first.", file=sys.stderr)
+        print(f"ERROR: top10.json not found at {TOP10_PATH}. Run generate_top10.py first.", file=sys.stderr)
         sys.exit(1)
 
-    print("📊 Loading portfolio data...")
+    print("Loading portfolio data...")
     top10_data = load_top10()
 
-    print("🤖 Calling Cloudflare Workers AI to generate post...")
+    print("Calling Cloudflare Workers AI to generate post...")
     prompt = build_prompt(top10_data)
     try:
         content = call_cloudflare_ai(prompt, max_tokens=500)
     except requests.exceptions.RequestException as e:
-        print(f"❌ Cloudflare AI call failed: {e}", file=sys.stderr)
+        print(f"ERROR: Cloudflare AI call failed: {e}", file=sys.stderr)
         sys.exit(1)
 
     title = generate_title()
@@ -128,7 +128,7 @@ def main():
     append_to_archive(post)
 
     print(f"\n{'='*60}")
-    print(f"📝 {title}")
+    print(f"  {title}")
     print(f"{'='*60}")
     print(content)
     print(f"{'='*60}")
