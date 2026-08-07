@@ -1,132 +1,132 @@
 {
-  "generated_at": "2026-08-06",
-  "positions_analyzed": 28,
-  "coverage_pct": 32.8,
+  "generated_at": "2026-08-07",
+  "positions_analyzed": 43,
+  "coverage_pct": 66.5,
   "sectors": [
     {
-      "sector": "Consumer Cyclical",
-      "percentage": 22.16
-    },
-    {
-      "sector": "Basic Materials",
-      "percentage": 15.31
+      "sector": "Unknown",
+      "percentage": 51.73
     },
     {
       "sector": "Healthcare",
-      "percentage": 14.12
+      "percentage": 16.22
     },
     {
-      "sector": "Industrials",
-      "percentage": 12.99
-    },
-    {
-      "sector": "Consumer Defensive",
-      "percentage": 10.33
-    },
-    {
-      "sector": "Energy",
-      "percentage": 9.43
+      "sector": "Consumer Cyclical",
+      "percentage": 9.28
     },
     {
       "sector": "Technology",
-      "percentage": 6.07
+      "percentage": 8.27
     },
     {
-      "sector": "Financial Services",
-      "percentage": 4.25
+      "sector": "Basic Materials",
+      "percentage": 5.51
     },
     {
       "sector": "Communication Services",
-      "percentage": 3.03
+      "percentage": 5.16
+    },
+    {
+      "sector": "Financial Services",
+      "percentage": 1.43
+    },
+    {
+      "sector": "Real Estate",
+      "percentage": 1.14
+    },
+    {
+      "sector": "Consumer Defensive",
+      "percentage": 0.71
+    },
+    {
+      "sector": "Industrials",
+      "percentage": 0.52
     },
     {
       "sector": "Utilities",
-      "percentage": 2.3
+      "percentage": 0.02
     }
   ],
   "geography": [
     {
+      "country": "Unknown",
+      "percentage": 51.73
+    },
+    {
       "country": "United States",
-      "percentage": 43.1
-    },
-    {
-      "country": "China",
-      "percentage": 13.87
-    },
-    {
-      "country": "Brazil",
-      "percentage": 8.49
-    },
-    {
-      "country": "Norway",
-      "percentage": 5.1
-    },
-    {
-      "country": "Netherlands",
-      "percentage": 4.63
+      "percentage": 28.14
     },
     {
       "country": "Ireland",
-      "percentage": 4.12
+      "percentage": 7.95
     },
     {
-      "country": "Greece",
-      "percentage": 4.03
+      "country": "Uruguay",
+      "percentage": 5.0
+    },
+    {
+      "country": "Germany",
+      "percentage": 2.86
+    },
+    {
+      "country": "Netherlands",
+      "percentage": 1.59
+    },
+    {
+      "country": "Canada",
+      "percentage": 0.71
+    },
+    {
+      "country": "Brazil",
+      "percentage": 0.71
+    },
+    {
+      "country": "India",
+      "percentage": 0.71
     },
     {
       "country": "United Kingdom",
-      "percentage": 3.88
-    },
-    {
-      "country": "France",
-      "percentage": 3.67
-    },
-    {
-      "country": "Mexico",
-      "percentage": 2.82
+      "percentage": 0.43
     },
     {
       "country": "Israel",
-      "percentage": 2.33
+      "percentage": 0.14
     },
     {
-      "country": "Denmark",
-      "percentage": 2.3
-    },
-    {
-      "country": "Hong Kong",
-      "percentage": 1.67
+      "country": "Kazakhstan",
+      "percentage": 0.02
     }
   ],
   "dividends": {
-    "weighted_yield": 3.52,
-    "payer_count": 22,
-    "total_analyzed": 28,
+    "weighted_yield": 4.29,
+    "payer_count": 25,
+    "total_analyzed": 43,
     "top_yielders": [
       {
-        "ticker": "STLA.US",
-        "company": "Stellantis NV",
-        "yield": 10.58
+        "ticker": "ARR",
+        "company": "ARMOUR Residential REIT, Inc.",
+        "yield": 17.4
       },
       {
-        "ticker": "PBR",
-        "company": "Petroleo Brasileiro SA Petrobras-ADR",
-        "yield": 9.6
-      },
-      {
-        "ticker": "VALE",
-        "company": "Vale SA-ADR",
-        "yield": 8.0
+        "ticker": "VICI",
+        "company": "VICI Properties Inc.",
+        "yield": 6.78
       },
       {
         "ticker": "PFE",
-        "company": "Pfizer",
-        "yield": 6.66
+        "company": "Pfizer Inc.",
+        "yield": 6.56
       },
       {
-        "ticker": "ABEV",
-        "company": "Ambev ADR",
-        "yield": 5.58
+        "ticker": "CNXC",
+        "company": "Concentrix Corporation",
+        "yield": 5.46
+      },
+      {
+        "ticker": "TLT",
+        "company": "iShares 20+ Year Treasury Bond ETF",
+        "yield": 4.75
       }
     ]
   }
